@@ -1,0 +1,27 @@
+You need Qt4, PyQt4 and the QtWebKit module installed to run this program.
+
+It accepts either a list of files or standard input and assumes one domain
+name per line of code.  It does not currently support pages other than the
+home page, as the extra '/' characters in the URL will mess things up.  Only
+place names like 'www.google.com' on a line, as the program will automatically
+prepend an 'http://' to the URL.
+
+Screenshots will be stored in images/ when you run the program, and they will
+wantonly and silently overwrite any existing images.  If you want to keep
+images from a previous run, make sure you pull them out of that directory.
+
+Currently, if one of the sites returns an error code like 500 or what have you,
+then the program will hang after that entry.  I haven't yet figured out why
+this is.
+
+***** COPYING *****
+This program is distributed under the terms of the GNU GPL, since several of
+the icons that I have used are licensed under the GPL and LGPL.  Those icons
+are stored in the icons/ directory and you can find their sources from
+http://www.iconlet.com/ if you want to.  Refer elsewhere for the full source
+of the GNU GPL (I presume whatever is the most recent version applies, since
+none of the icons have a specific version listed.  As of the time of this
+writing the most current version of the GPL is version 3).  Google can get
+you the text, or you can find it at http://www.gnu.org/licenses/gpl.html.
+
+--Greg
