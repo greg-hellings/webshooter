@@ -56,10 +56,14 @@ class MakeMyScreenshot(QtGui.QWidget):
 		if not status:
 			self.feedback('icons/error.png', 2)
 			self.view.stop()
-			print str(status)
 			# Now, create a new one, I suppose?
-			#self.view = QtWebKit.QWebView(None)
-			#self.view.setGeometry(0, 0, 1920, 1200)
+			# This seems to be a work-around for a bug where the QtWebView will not
+			# load any more pages after it errors on one.  At least most of the time
+			# this seems to get the job done.
+			del self.view
+			self.view = QtWebKit.QWebView(None)
+			self.view.setGeometry(0, 0, 1920, 1200)
+			self.view.connect(self.view, QtCore.SIGNAL('loadFinished(bool)'), self.loaded)
 		else:
 			# This is the HTML frame that holds our rendered site
 			frame = self.view.page().mainFrame()
@@ -77,8 +81,8 @@ class MakeMyScreenshot(QtGui.QWidget):
 		self.loadNext()
 	
 	def loadNext(self):
-		next = self.myList.pop(0)
-		if next:
+		if len(self.myList):
+			next = self.myList.pop(0)
 			# Load the next URL
 			self.filename = next[1]
 			self.current  = next[0]
