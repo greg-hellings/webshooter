@@ -74,6 +74,11 @@ class MakeMyScreenshot(QtGui.QWidget):
 			
 			# We have to save the results out to a file
 			self.image.save(self.filename)
+
+			# TODO: Is this possibly being a memory leak? The application is running into very
+			# high memory usage (700MB+) after it has been running for a while (400 shots).
+			# Next time I run this I will try putting in some del statements here to see if I can
+			# encourage the GC to behave properly.
 			
 			# If everything was successful
 			self.feedback('icons/success.png')
